@@ -1,0 +1,14 @@
+{
+  "api_base_url": "https://creai.onrender.com",
+  "client_id": "creai",
+  "videoId": "K5uzqjelN4k",
+  "theme": {
+    "primary_color": "#2f6df6",
+    "accent_color": "#7fb0ff",
+    "background_color": "#ffffff",
+    "text_color": "#0f1b33"
+  },
+  "strings": {
+    "overlay_title": "Reflect"
+  }
+}

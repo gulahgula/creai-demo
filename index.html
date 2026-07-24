@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch — demo (no extension)</title>
+  
+  <link rel="stylesheet" href="./overlay.css" />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #0b1220;
+      color: #e6ebf5;
+    }
+    .topbar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; border-bottom: 1px solid #1c2740;
+      background: #0e1730;
+    }
+    .wordmark { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #7fb0ff; }
+    .badge {
+      margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #0b1220; background: #e0a83e;
+      padding: 4px 9px; border-radius: 999px;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 22px 20px 60px; }
+    #video-title { font-size: 22px; font-weight: 700; margin: 4px 0 2px; line-height: 1.25; }
+    #channel-name { color: #93a2c2; font-size: 14px; margin-bottom: 16px; }
+    
+    #player-stage {
+      position: relative; aspect-ratio: 16 / 9; width: 100%;
+      background: #000; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 20px 50px -24px rgba(0,0,0,0.8);
+    }
+    #player-stage #player,
+    #player-stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .controls {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px;
+    }
+    .controls button {
+      padding: 7px 12px; border-radius: 8px; border: 1px solid #2a3a5e;
+      background: #16223d; color: #e6ebf5; cursor: pointer; font-size: 13px;
+    }
+    .controls button:hover { background: #1d2c4d; }
+    #clock { font-variant-numeric: tabular-nums; color: #93a2c2; margin-left: auto; font-size: 13px; }
+    .hint { margin-top: 12px; color: #6f80a3; font-size: 12.5px; line-height: 1.5; }
+    .hint code { background: #16223d; padding: 1px 5px; border-radius: 4px; color: #b9c6e2; }
+    #picker-form {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      margin-bottom: 16px; padding: 12px; border-radius: 10px;
+      background: #0e1730; border: 1px solid #1c2740;
+    }
+    #picker-form input {
+      padding: 7px 10px; border-radius: 8px; border: 1px solid #2a3a5e;
+      background: #16223d; color: #e6ebf5; font-size: 13px;
+    }
+    #picker-video { flex: 1; min-width: 200px; }
+    #picker-form button {
+      padding: 7px 14px; border-radius: 8px; border: 1px solid #2a3a5e;
+      background: #1f3a63; color: #e6ebf5; cursor: pointer; font-size: 13px;
+    }
+    #picker-form button:hover { background: #274a7a; }
+    #picker-status { width: 100%; font-size: 12.5px; color: #e0a83e; min-height: 1em; }
+    .lede { color: #93a2c2; font-size: 14px; line-height: 1.55; margin: 0 0 14px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span class="wordmark">Creai</span>
+    <span class="badge">Demo · no extension</span>
+  </div>
+  <main>
+    <p class="lede">
+      Paste a YouTube link to watch it with its interactive prompts — in the browser,
+      with no extension installed.
+    </p>
+    <form id="picker-form">
+      <input id="picker-client" type="text" placeholder="creator id" autocomplete="off" />
+      <input id="picker-video" type="text" placeholder="YouTube URL or video id" autocomplete="off" />
+      <button type="submit">Load</button>
+      <div id="picker-status"></div>
+    </form>
+
+    <h1 id="video-title">Loading…</h1>
+
+    <div id="player-stage">
+      <div id="player"></div>
+      
+      <div id="ce-root"></div>
+    </div>
+
+    <div class="controls">
+      <button id="btn-play" type="button">▶ Play</button>
+      <button id="btn-pause" type="button">⏸ Pause</button>
+      <span id="seek-buttons"></span>
+      <span id="clock">0:00 / —</span>
+    </div>
+
+    <p class="hint">Reflect without extension</p>
+  </main>
+
+  <script type="module" src="./app.js?v=d085e6b9"></script>
+</body>
+</html>
