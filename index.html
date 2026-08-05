@@ -37,6 +37,11 @@
     }
     #player-stage #player,
     #player-stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    
+    #player-stage:fullscreen {
+      width: 100vw; height: 100vh; aspect-ratio: auto;
+      border-radius: 0; box-shadow: none;
+    }
     .controls {
       display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px;
     }
@@ -95,6 +100,8 @@
     <div class="controls">
       <button id="btn-play" type="button">▶ Play</button>
       <button id="btn-pause" type="button">⏸ Pause</button>
+      
+      <button id="btn-fullscreen" type="button">⛶ Fullscreen</button>
       <span id="seek-buttons"></span>
       <span id="clock">0:00 / —</span>
     </div>
@@ -102,6 +109,6 @@
     <p class="hint">Reflect without extension</p>
   </main>
 
-  <script type="module" src="./app.js?v=d085e6b9"></script>
+  <script type="module" src="./app.js?v=4cfa717a"></script>
 </body>
 </html>
