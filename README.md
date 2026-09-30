@@ -1,5 +1,7 @@
-# Creai — interactive video demo
+# creai-demo (generated)
 
-Watch a YouTube video with its interactive prompts, in the browser, with no extension installed.
+The extension-free watch player. **Do not edit this repository by hand** — every
+push to `main` on the platform repo replaces these files with a fresh build of
+`apps/web-embed`, so an edit here is lost at the next deploy.
 
-Enter a creator id and a YouTube link; prompts are fetched live from the Creai API.
+`build.json` records the platform commit this bundle came from.

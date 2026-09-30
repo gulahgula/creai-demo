@@ -42,6 +42,40 @@
       width: 100vw; height: 100vh; aspect-ratio: auto;
       border-radius: 0; box-shadow: none;
     }
+    
+    #stage-status {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 24px; text-align: center; background: #0a0f1c;
+    }
+    #stage-status .spinner {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 3px solid #1c2740; border-top-color: #7fb0ff;
+      animation: stage-spin 0.9s linear infinite;
+    }
+    #stage-status[data-state="error"] .spinner { display: none; }
+    #stage-text { font-size: 15px; font-weight: 600; color: #e6ebf5; }
+    #stage-sub { font-size: 13px; line-height: 1.5; color: #93a2c2; max-width: 420px; min-height: 1em; }
+    #stage-steps { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; text-align: left; }
+    #stage-steps li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: #5d6d8f; }
+    #stage-steps .dot { width: 9px; height: 9px; border-radius: 50%; border: 2px solid #2a3a5e; flex: none; }
+    #stage-steps li[data-state="active"] { color: #e6ebf5; }
+    #stage-steps li[data-state="active"] .dot { border-color: #7fb0ff; background: #7fb0ff; animation: stage-pulse 1.2s ease-in-out infinite; }
+    #stage-steps li[data-state="done"] { color: #93a2c2; }
+    #stage-steps li[data-state="done"] .dot { border-color: #4fbf8a; background: #4fbf8a; }
+    #stage-steps li[data-state="error"] { color: #e0a83e; }
+    #stage-steps li[data-state="error"] .dot { border-color: #e0a83e; background: #e0a83e; }
+    #stage-status[data-state="error"] .spinner { display: none; }
+    #stage-retry {
+      display: none; padding: 7px 14px; border-radius: 8px; border: 1px solid #2a3a5e;
+      background: #1f3a63; color: #e6ebf5; cursor: pointer; font-size: 13px;
+    }
+    #stage-status[data-state="error"] #stage-retry { display: inline-block; }
+    @keyframes stage-pulse { 50% { opacity: 0.35; } }
+    @keyframes stage-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      #stage-status .spinner, #stage-steps .dot { animation: stage-pulse 1.6s ease-in-out infinite; }
+    }
     .controls {
       display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px;
     }
@@ -91,10 +125,19 @@
 
     <h1 id="video-title">Loading…</h1>
 
+    
     <div id="player-stage">
-      <div id="player"></div>
-      
-      <div id="ce-root"></div>
+      <div id="stage-status" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <div id="stage-text">Getting your prompts ready</div>
+        <ol id="stage-steps">
+          <li data-step="service" data-state="active"><span class="dot"></span><span class="lbl">Reaching the service</span></li>
+          <li data-step="prompts" data-state="pending"><span class="dot"></span><span class="lbl">Loading prompts</span></li>
+          <li data-step="video" data-state="pending"><span class="dot"></span><span class="lbl">Starting the video</span></li>
+        </ol>
+        <div id="stage-sub"></div>
+        <button id="stage-retry" type="button">Try again</button>
+      </div>
     </div>
 
     <div class="controls">
@@ -109,6 +152,6 @@
     <p class="hint">Reflect without extension</p>
   </main>
 
-  <script type="module" src="./app.js?v=4cfa717a"></script>
+  <script type="module" src="./app.js?v=550fd6dd"></script>
 </body>
 </html>
