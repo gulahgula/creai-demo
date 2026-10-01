@@ -1,0 +1,32 @@
+# Keeps the free Render service awake during the hours people actually open the
+# demo. Source of truth for `.github/workflows/keepalive.yml` in the PUBLIC demo
+# repo (gulahgula/creai-demo) — it lives THERE on purpose: GitHub Actions minutes
+# are unlimited on public repos, while the platform repo is private with a 2000
+# minute budget that CI and live-check already spend. Copy changes across by hand
+# (the CI publish uses keep_files, so it never overwrites or deletes this file).
+#
+# Render's free tier sleeps after 15 idle minutes, so pings every 5-10 minutes
+# hold it up. Window: Mon-Fri 06:00-21:59 UTC — EU morning through the US West
+# afternoon. Evenings and weekends are left to sleep: the demo wakes on the next
+# visit (the player shows its waking states), and every awake hour is drawn from
+# the 750-hour pool the free `creai` and `creai-relayfree` services share.
+# GitHub schedules are best-effort and run late under load; this is a nudge, not
+# a guarantee. A guarantee is Render's paid plan.
+name: Keep the API awake
+
+on:
+  schedule:
+    - cron: "*/5 6-21 * * 1-5"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping /healthz
+        # Never fail the run: a cold service answering slowly is the thing being
+        # fixed, not an error worth a red mark and an email.
+        run: curl -s -o /dev/null -m 90 --retry 2 -w "healthz HTTP %{http_code} in %{time_total}s\n" https://creai.onrender.com/healthz || true
