@@ -104,11 +104,21 @@
     #picker-form button:hover { background: #274a7a; }
     #picker-status { width: 100%; font-size: 12.5px; color: #e0a83e; min-height: 1em; }
     .lede { color: #93a2c2; font-size: 14px; line-height: 1.55; margin: 0 0 14px; }
+    .back { margin-left: 14px; color: #93a2c2; font-size: 13px; text-decoration: none; }
+    .back:hover { color: #e6ebf5; }
+    #gallery[hidden] { display: none; }
+    #gallery-status { color: #93a2c2; font-size: 13px; line-height: 1.5; min-height: 1em; margin: 0 0 10px; }
+    #gallery-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    #gallery-list a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 14px 16px; border-radius: 12px; background: #0e1730; border: 1px solid #1c2740; color: #e6ebf5; text-decoration: none; }
+    #gallery-list a:hover, #gallery-list a:focus-visible { border-color: #7fb0ff; background: #12204a; outline: none; }
+    #gallery-list b { font-size: 15px; line-height: 1.3; }
+    #gallery-list span { font-size: 12.5px; color: #93a2c2; }
   </style>
 </head>
 <body>
   <div class="topbar">
     <span class="wordmark">Creai</span>
+    <a class="back" href="./">All demos</a>
     <span class="badge">Demo · no extension</span>
   </div>
   <main>
@@ -124,6 +134,12 @@
     </form>
 
     <h1 id="video-title">Loading…</h1>
+
+    
+    <section id="gallery" hidden aria-label="Demos made by creators">
+      <p id="gallery-status" role="status" aria-live="polite"></p>
+      <ul id="gallery-list"></ul>
+    </section>
 
     
     <div id="player-stage">
@@ -152,6 +168,6 @@
     <p class="hint">Reflect without extension</p>
   </main>
 
-  <script type="module" src="./app.js?v=8aa4cf5f"></script>
+  <script type="module" src="./app.js?v=4109fa8a"></script>
 </body>
 </html>
