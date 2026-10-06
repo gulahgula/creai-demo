@@ -1,6 +1,13 @@
 
 
 @font-face {
+  font-family: "Public Sans";
+  src: url("assets/fonts/public-sans-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Nosifer";
   src: url("assets/fonts/nosifer-latin-400-normal.woff2") format("woff2");
   font-weight: 400;
@@ -42,7 +49,7 @@
   top: 16px;
   bottom: 64px;
   z-index: 10000;
-  font-family: ui-sans-serif, system-ui, "Segoe UI", "Inter", "Roboto", sans-serif;
+  font-family: "Public Sans", ui-sans-serif, system-ui, "Segoe UI", "Inter", "Roboto", sans-serif;
   pointer-events: none;
 }
 
@@ -1359,3 +1366,61 @@
 .ce-chip:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
 .ce-chip[aria-pressed="true"] { border-color: var(--ce-primary); background: color-mix(in srgb, var(--ce-primary) 22%, transparent); }
 .ce-chip:focus-visible { outline: 2px solid var(--ce-primary); outline-offset: 2px; }
+
+#ce-root .ce-card:not([data-style="horror"]):not([data-style="title_card"]) .ce-btn { font-weight: 500; }
+#ce-root .ce-card:not([data-style="horror"]):not([data-style="title_card"]) .ce-btn-choice {
+  color: color-mix(in srgb, var(--ce-text, #111) 92%, var(--ce-type));
+  background: color-mix(in srgb, var(--ce-text, #111) 6%, var(--ce-background, #fff));
+  border-color: color-mix(in srgb, var(--ce-text, #111) 22%, transparent);
+}
+#ce-root .ce-card:not([data-style="horror"]):not([data-style="title_card"]) .ce-btn-choice:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ce-type) 20%, var(--ce-background, #fff));
+  border-color: var(--ce-type);
+  color: var(--ce-text, #111);
+}
+#ce-root .ce-card .ce-body { font-size: calc(14.5px * var(--cr-scale, 1)); }
+#ce-root .ce-card .ce-btn { font-size: calc(13px * var(--cr-scale, 1)); }
+#ce-root .ce-card .ce-body em { font-style: italic; }
+
+#ce-root .ce-card .ce-icon { display: block; }
+#ce-root .ce-card .ce-confidence { flex-wrap: nowrap; }
+#ce-root .ce-card .ce-chip { white-space: nowrap; }
+#ce-root .ce-card :is(.ce-hdr-action, .ce-snooze-toggle, .ce-fb-btn, .ce-dismiss) {
+  color: color-mix(in srgb, var(--ce-text, #111) 66%, transparent);
+  display: inline-flex;
+  align-items: center;
+}
+#ce-root .ce-card :is(.ce-hdr-action, .ce-snooze-toggle, .ce-fb-btn, .ce-dismiss):hover { color: var(--ce-text, #111); }
+#ce-root .ce-card .ce-fb-btn.ce-fb-chosen { color: var(--ce-type); }
+
+#ce-root .ce-card .ce-creator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  max-width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: color-mix(in srgb, var(--ce-text, #111) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ce-text, #111) 20%, transparent);
+}
+#ce-root .ce-card .ce-creator-dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--ce-primary); }
+#ce-root .ce-card .ce-meta { display: flex; align-items: center; gap: 8px; margin-right: auto; min-width: 0; }
+#ce-root .ce-card .ce-ticker {
+  flex: none;
+  white-space: nowrap;
+  font-size: 11px;
+  color: color-mix(in srgb, var(--ce-text, #111) 62%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+#ce-root[data-density="compact"] .ce-card:not([data-style="horror"]):not([data-style="title_card"]) { padding: 10px 12px 11px; }
+#ce-root[data-density="compact"] .ce-card .ce-body { margin-bottom: 8px; }
+#ce-root[data-motion="reduced"] *,
+#ce-notify[data-motion="reduced"] * {
+  animation: none !important;
+  transition: none !important;
+}
