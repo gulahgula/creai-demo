@@ -1514,3 +1514,27 @@
 }
 #ce-root .ce-handoff-skip { color: var(--ce-primary); padding: 4px 8px; }
 #ce-root .ce-handoff-skip:hover { background: color-mix(in srgb, var(--ce-primary) 16%, transparent); color: var(--ce-text, #111); }
+
+.ce-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font: 500 13px/1.3 "Public Sans", system-ui, sans-serif;
+  color: var(--yt-spec-text-primary, var(--ce-text, #111111));
+  background: var(--yt-spec-badge-chip-background, var(--ce-background, #ffffff));
+  border: 1px solid rgba(127, 127, 127, 0.3);
+}
+.ce-strip-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ce-strip-btn {
+  font: inherit;
+  color: var(--ce-primary, #2563eb);
+  background: none;
+  border: 0;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+.ce-strip-btn:hover { text-decoration: underline; }
+.ce-strip-x { color: inherit; opacity: 0.6; font-size: 16px; line-height: 1; }
