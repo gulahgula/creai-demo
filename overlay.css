@@ -1424,3 +1424,93 @@
   animation: none !important;
   transition: none !important;
 }
+
+#ce-root .ce-countdown-bar {
+  transition: none;
+  width: 100%;
+  animation: ce-countdown 10s linear forwards;
+}
+#ce-root .ce-card.is-held .ce-countdown-bar,
+#ce-notify .is-held .ce-countdown-bar { animation-play-state: paused; }
+@keyframes ce-countdown { from { width: 100%; } to { width: 0%; } }
+#ce-root[data-motion="reduced"] .ce-countdown-bar { display: none; }
+#ce-root .ce-card.ce-folding {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(48px) scale(0.7);
+  transform-origin: 50% 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+#ce-root .ce-keep-row { margin-top: 8px; }
+#ce-root .ce-keep { padding-left: 0; font-size: 12px; opacity: 0.8; }
+#ce-root .ce-keep:hover { opacity: 1; background: none; color: var(--ce-text, #111); }
+
+#ce-root .ce-thread .ce-card[data-depth] { margin-left: 12px; position: relative; }
+#ce-root .ce-thread .ce-card[data-depth]::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--ce-type) 45%, transparent);
+}
+#ce-root .ce-card[data-via="wrong"],
+#ce-root .ce-card[data-edge="warm"] { border-top-color: var(--ce-accent, #e8c468); --ce-type: var(--ce-accent, #e8c468); }
+#ce-root .ce-handoff {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  background: color-mix(in srgb, var(--ce-text, #111) 8%, var(--ce-background, #fff));
+  color: var(--ce-text, #111);
+  border: 1px solid color-mix(in srgb, var(--ce-text, #111) 16%, transparent);
+}
+#ce-root .ce-handoff-label { flex: 1; }
+#ce-root .ce-handoff-ring {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: conic-gradient(var(--ce-type) var(--ce-sweep), color-mix(in srgb, var(--ce-text, #111) 20%, transparent) 0);
+  -webkit-mask: radial-gradient(circle, transparent 5px, #000 6px);
+  mask: radial-gradient(circle, transparent 5px, #000 6px);
+  animation: ce-ring 3s linear forwards;
+}
+#ce-root .ce-handoff.is-held .ce-handoff-ring { animation-play-state: paused; }
+@property --ce-sweep { syntax: "<angle>"; initial-value: 360deg; inherits: false; }
+@keyframes ce-ring { from { --ce-sweep: 360deg; } to { --ce-sweep: 0deg; } }
+#ce-root[data-motion="reduced"] .ce-handoff-ring { animation: none; }
+#ce-root .ce-moment {
+  display: inline-block;
+  margin: 2px 0 10px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  background: color-mix(in srgb, var(--ce-text, #111) 8%, var(--ce-background, #fff));
+}
+#ce-root .ce-replay-track { height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--ce-text, #111) 16%, transparent); }
+#ce-root .ce-replay-fill { height: 5px; width: 0; border-radius: 3px; background: var(--ce-type); }
+#ce-root .ce-replay-left { margin-top: 8px; font-size: 12px; opacity: 0.75; }
+#ce-root .ce-note .ce-body { margin-bottom: 8px; }
+
+#ce-root .ce-btn-scale.ce-previous { border-style: dashed; border-color: var(--ce-accent, #e8c468); }
+#ce-root .ce-scale-previous { margin-top: 6px; font-size: 11px; color: var(--ce-accent, #e8c468); }
+#ce-root .ce-upnext-skip { margin-top: 6px; font-size: 12px; opacity: 0.8; }
+
+#ce-root .ce-thread .ce-card:not(:last-child):not(.ce-note) :is(.ce-confidence, .ce-feedback, .ce-meta) { display: none; }
+#ce-root .ce-thread .ce-card:not(:last-child):not(.ce-note) .ce-btn-choice:not(.ce-chosen):not(.ce-right) { display: none; }
+#ce-root .ce-thread .ce-card:not(:last-child):not(.ce-note) .ce-body {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+#ce-root .ce-handoff-skip { color: var(--ce-primary); padding: 4px 8px; }
+#ce-root .ce-handoff-skip:hover { background: color-mix(in srgb, var(--ce-primary) 16%, transparent); color: var(--ce-text, #111); }
