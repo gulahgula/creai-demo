@@ -1349,3 +1349,13 @@
 }
 @keyframes ce-fade { from { opacity: 0; } }
 @keyframes ce-fade-away { to { opacity: 0; } }
+
+.ce-confidence { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 2px 0 8px; font-size: 11px; }
+.ce-confidence-label { opacity: 0.7; margin-right: 2px; }
+.ce-chip {
+  font: inherit; font-size: 11px; line-height: 1; padding: 5px 9px; border-radius: 999px; cursor: pointer;
+  color: inherit; background: transparent; border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+.ce-chip:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+.ce-chip[aria-pressed="true"] { border-color: var(--ce-primary); background: color-mix(in srgb, var(--ce-primary) 22%, transparent); }
+.ce-chip:focus-visible { outline: 2px solid var(--ce-primary); outline-offset: 2px; }
